@@ -13,11 +13,14 @@ module.exports = {
       }
     },
     fontFamily: {
-      sans: ['Roboto', ...fontFamily.sans]
+      roboto: ['Roboto', ...fontFamily.sans]
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
+        border: {
+          DEFAULT: 'hsl(var(--border))',
+          foreground: 'hsl(var(--border-foreground))'
+        },
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
