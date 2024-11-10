@@ -8,9 +8,12 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
+    minWidth: 480,
+    minHeight: 357,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
+    frame: false,
     center: true,
     title: 'SnapSave',
     webPreferences: {

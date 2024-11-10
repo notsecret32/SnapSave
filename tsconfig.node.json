@@ -11,6 +11,7 @@
     "types": ["electron-vite/node"],
     "baseUrl": ".",
     "paths": {
+      "@resources/*": ["resources/*"],
       "@main/*": ["src/main/*"],
       "@preload/*": ["src/preload/*"],
       "@shared/*": ["src/shared/*"]
