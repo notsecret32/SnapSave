@@ -1,8 +1,13 @@
-import { useFileSystem } from '@/hooks'
+import { AddFilesModal } from '@/components/shared/modals/add-files-modal'
 import { FC } from 'react'
 
 export const Dashboard: FC = () => {
-  const { homeDir } = useFileSystem()
-
-  return <div>{homeDir}</div>
+  return (
+    <main className="flex h-screen flex-col p-4">
+      <div>Content</div>
+      <div className="mt-auto">
+        <AddFilesModal />
+      </div>
+    </main>
+  )
 }
