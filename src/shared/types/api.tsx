@@ -1,5 +1,5 @@
 export interface FileSystem {
-  GetRootDir: () => Promise<string>
+  getRootDir: () => Promise<string>
 }
 
 export interface SnapSaveApi {

@@ -12,7 +12,7 @@ try {
   contextBridge.exposeInMainWorld('snapsave', {
     locale: navigator.language,
     fs: {
-      GetRootDir: () => ipcRenderer.invoke(ipcFsGetRootDirKey)
+      getRootDir: () => ipcRenderer.invoke(ipcFsGetRootDirKey)
     }
   } as SnapSaveApi)
 } catch (error) {

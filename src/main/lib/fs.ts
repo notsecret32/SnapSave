@@ -1,6 +1,6 @@
 import { appDirectoryName } from '@shared/constants'
 import { homedir } from 'os'
 
-export const GetRootDir = async () => {
+export const getRootDir = async () => {
   return `${homedir()}\\${appDirectoryName}`
 }

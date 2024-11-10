@@ -3,7 +3,7 @@ import { ipcFsGetRootDirKey } from '@shared/constants'
 import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
-import { GetRootDir } from './lib'
+import { getRootDir } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
@@ -57,7 +57,7 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  ipcMain.handle(ipcFsGetRootDirKey, async () => GetRootDir())
+  ipcMain.handle(ipcFsGetRootDirKey, async () => getRootDir())
 
   createWindow()
 

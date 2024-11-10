@@ -11,7 +11,7 @@ export const useFileSystem = () => {
   useEffect(() => {
     const fetchRootDir = async () => {
       try {
-        const value = await fs.GetRootDir()
+        const value = await fs.getRootDir()
         setHomeDir(value)
       } catch (err) {
         setError(err as Error)
