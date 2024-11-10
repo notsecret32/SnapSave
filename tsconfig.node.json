@@ -12,7 +12,7 @@
     "baseUrl": ".",
     "paths": {
       "@resources/*": ["resources/*"],
-      "@main/*": ["src/main/*"],
+      "@/*": ["src/main/*"],
       "@preload/*": ["src/preload/*"],
       "@shared/*": ["src/shared/*"]
     }

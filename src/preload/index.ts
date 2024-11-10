@@ -1,18 +1,20 @@
 import { electronAPI } from '@electron-toolkit/preload'
-import { SnapSaveApi } from '@shared/SnapSaveApi'
-import { contextBridge } from 'electron'
+import { ipcFsGetRootDirKey } from '@shared/constants'
+import { SnapSaveApi } from '@shared/types'
+import { contextBridge, ipcRenderer } from 'electron'
 
 if (!process.contextIsolated) {
   throw new Error('contextIsolation must be enabled in the BrowserWindow')
 }
 
 try {
-  const snapSaveApi: SnapSaveApi = {
-    locale: navigator.language
-  }
-
   contextBridge.exposeInMainWorld('electron', electronAPI)
-  contextBridge.exposeInMainWorld('snapsave', snapSaveApi)
+  contextBridge.exposeInMainWorld('snapsave', {
+    locale: navigator.language,
+    fs: {
+      GetRootDir: () => ipcRenderer.invoke(ipcFsGetRootDirKey)
+    }
+  } as SnapSaveApi)
 } catch (error) {
   console.error(error)
 }

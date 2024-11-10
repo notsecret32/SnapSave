@@ -1,5 +1,8 @@
+import { useFileSystem } from '@/hooks'
 import { FC } from 'react'
 
 export const Dashboard: FC = () => {
-  return <div>Dashboard</div>
+  const { homeDir } = useFileSystem()
+
+  return <div>{homeDir}</div>
 }
