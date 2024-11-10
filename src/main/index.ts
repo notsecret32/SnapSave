@@ -13,6 +13,7 @@ function createWindow(): void {
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
+    frame: false,
     center: true,
     title: 'SnapSave',
     webPreferences: {
