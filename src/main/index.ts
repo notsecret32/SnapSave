@@ -1,7 +1,9 @@
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { app, BrowserWindow, shell } from 'electron'
+import { ipcFsGetRootDirKey } from '@shared/constants'
+import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
+import { getRootDir } from './lib'
 
 function createWindow(): void {
   // Create the browser window.
@@ -18,7 +20,7 @@ function createWindow(): void {
     title: 'SnapSave',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: true,
+      sandbox: false,
       contextIsolation: true
     }
   })
@@ -55,7 +57,7 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC here
+  ipcMain.handle(ipcFsGetRootDirKey, async () => getRootDir())
 
   createWindow()
 
