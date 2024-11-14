@@ -19,9 +19,12 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
+import { useAuthStore } from '@/store'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { DoorOpen } from 'lucide-react'
 import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 const formSchema = z.object({
@@ -30,6 +33,9 @@ const formSchema = z.object({
 })
 
 export const AddFilesModal: FC = () => {
+  const navigate = useNavigate()
+  const { error, signOut } = useAuthStore()
+
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -57,10 +63,21 @@ export const AddFilesModal: FC = () => {
     setSelectedFiles([])
   }
 
+  const handleSignOut = async () => {
+    await signOut()
+    if (error) return
+    navigate('/sign-in', { replace: true })
+  }
+
   return (
     <Dialog modal onOpenChange={handleClose}>
       <DialogTrigger asChild>
-        <Button className="w-full">ADD FILES</Button>
+        <div className="flex gap-2">
+          <Button className="w-full">ADD FILES</Button>
+          <Button variant="outlined" size="icon" onClick={handleSignOut}>
+            <DoorOpen />
+          </Button>
+        </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <Form {...form}>
