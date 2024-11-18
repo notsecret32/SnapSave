@@ -1,11 +1,11 @@
 import { supabase } from '@/config/supabase'
+import { User } from '@/types'
 import {
   AuthError,
   Session,
   SignInWithPasswordCredentials,
   SignOut,
-  SignUpWithPasswordCredentials,
-  User
+  SignUpWithPasswordCredentials
 } from '@supabase/supabase-js'
 import { create } from 'zustand'
 
