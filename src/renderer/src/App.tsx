@@ -1,5 +1,5 @@
-import { ThemeProvider } from '@/components/shared'
 import { TitleBar } from '@/components/shared/common'
+import { ThemeProvider } from '@/components/shared/theme'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import { router } from '@/routes'
 import { FC } from 'react'
