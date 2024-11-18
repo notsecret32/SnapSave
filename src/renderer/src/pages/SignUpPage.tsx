@@ -23,7 +23,7 @@ export const SignUpPage: FC = () => {
       }
     })
 
-    navigate('/dashboard', { replace: true })
+    navigate('/storage', { replace: true })
   }
 
   return (

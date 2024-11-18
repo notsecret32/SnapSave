@@ -17,7 +17,7 @@ export const SignInPage: FC = () => {
       password
     })
 
-    navigate('/dashboard', { replace: true })
+    navigate('/storage', { replace: true })
   }
 
   return (

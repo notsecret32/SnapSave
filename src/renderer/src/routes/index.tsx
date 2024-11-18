@@ -1,5 +1,6 @@
 import { ProtectedRoute } from '@/components/shared/common'
-import { DashboardPage, SignInPage, SignUpPage } from '@/pages'
+import { AppOutlet } from '@/components/shared/sidebar'
+import { SignInPage, SignUpPage } from '@/pages'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 export const router = createBrowserRouter([
@@ -13,19 +14,32 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
+    element: <AppOutlet />,
     children: [
       {
         index: true,
-        element: <Navigate to="/dashboard" replace />
+        element: <Navigate to="/storage" replace />
       },
       {
-        path: 'dashboard',
-        element: (
-          <ProtectedRoute>
-            <DashboardPage />
-          </ProtectedRoute>
-        )
+        path: 'storage',
+        element: <ProtectedRoute>User Storage Page</ProtectedRoute>
+      },
+      {
+        path: 'shared-storage',
+        element: <ProtectedRoute>Shared Storage Page</ProtectedRoute>
+      },
+      {
+        path: 'community',
+        element: <ProtectedRoute>Community Page</ProtectedRoute>
+      },
+      {
+        path: 'settings',
+        element: <ProtectedRoute>Settings Page</ProtectedRoute>
       }
     ]
+  },
+  {
+    path: '*',
+    element: <>404 Not found</>
   }
 ])
