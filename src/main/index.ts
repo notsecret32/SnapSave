@@ -8,8 +8,8 @@ import { getRootDir } from './lib'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1024,
+    height: 768,
     minWidth: 480,
     minHeight: 357,
     show: false,
