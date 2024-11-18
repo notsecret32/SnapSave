@@ -1,4 +1,3 @@
-import { TitleBar } from '@/components/shared/common'
 import { ThemeProvider } from '@/components/shared/theme'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import { router } from '@/routes'
@@ -9,7 +8,6 @@ export const App: FC = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="snapsave-theme">
       <SidebarProvider>
-        <TitleBar />
         <RouterProvider router={router} />
       </SidebarProvider>
     </ThemeProvider>
