@@ -1,21 +1,58 @@
-import { AppSidebarMenu } from '@/components/shared/sidebar'
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroupContent,
-  SidebarGroupLabel
-} from '@/components/ui/sidebar'
+import { NavStorage } from '@/components/shared/sidebar'
+import { Sidebar, SidebarContent, SidebarFooter } from '@/components/ui/sidebar'
+import { useUser } from '@/hooks'
+import { Home, Inbox, Search, Settings } from 'lucide-react'
 import { FC } from 'react'
+import { NavUser } from './nav-user'
 
-export const AppSidebar: FC = () => {
+const data = {
+  navStorage: [
+    {
+      name: 'My storage',
+      tooltip: 'My storage',
+      url: '/storage',
+      Icon: Home
+    },
+    {
+      name: 'Shared storage',
+      tooltip: 'Shared storage',
+      url: '/shared-storage',
+      Icon: Inbox
+    },
+    {
+      name: 'Community',
+      tooltip: 'Community',
+      url: '/community',
+      Icon: Search
+    },
+    {
+      name: 'Settings',
+      tooltip: 'Settings',
+      url: '/settings',
+      Icon: Settings
+    }
+  ],
+  navUser: {
+    email: 'sashaskvorhevskiy@gmail.com',
+    user_metadata: {
+      username: 'notsecret32'
+    }
+  }
+}
+
+type AppSidebarProps = React.ComponentProps<typeof Sidebar>
+
+export const AppSidebar: FC<AppSidebarProps> = ({ ...props }) => {
+  const user = useUser()
+
   return (
-    <Sidebar variant="sidebar">
+    <Sidebar collapsible="icon" {...props}>
       <SidebarContent>
-        <SidebarGroupLabel>Storage</SidebarGroupLabel>
-        <SidebarGroupContent>
-          <AppSidebarMenu />
-        </SidebarGroupContent>
+        <NavStorage items={data.navStorage} />
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={user} />
+      </SidebarFooter>
     </Sidebar>
   )
 }
