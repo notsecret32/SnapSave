@@ -1,4 +1,5 @@
 import { SignInPage } from '@/pages/SignInPage'
 import { SignUpPage } from '@/pages/SignUpPage'
+import { StoragePage } from '@/pages/StoragePage'
 
-export { SignInPage, SignUpPage }
+export { SignInPage, SignUpPage, StoragePage }

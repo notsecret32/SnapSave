@@ -1,6 +1,6 @@
 import { ProtectedRoute } from '@/components/shared/common'
 import { AppOutlet } from '@/components/shared/sidebar'
-import { SignInPage, SignUpPage } from '@/pages'
+import { SignInPage, SignUpPage, StoragePage } from '@/pages'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 
 export const router = createBrowserRouter([
@@ -22,7 +22,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'storage',
-        element: <ProtectedRoute>User Storage Page</ProtectedRoute>
+        element: (
+          <ProtectedRoute>
+            <StoragePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: 'shared-storage',
