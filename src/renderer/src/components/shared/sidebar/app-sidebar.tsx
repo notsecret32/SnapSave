@@ -1,4 +1,4 @@
-import { NavStorage } from '@/components/shared/sidebar'
+import { NavStorages } from '@/components/shared/sidebar'
 import { Sidebar, SidebarContent } from '@/components/ui/sidebar'
 import { FC } from 'react'
 
@@ -8,7 +8,7 @@ export const AppSidebar: FC<AppSidebarProps> = ({ ...props }) => {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarContent>
-        <NavStorage sharedStorages={null} />
+        <NavStorages storages={null} />
       </SidebarContent>
     </Sidebar>
   )

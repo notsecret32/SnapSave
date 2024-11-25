@@ -11,16 +11,14 @@ import { Plus, type LucideIcon } from 'lucide-react'
 import { FC } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-interface NavStorageProps {
-  sharedStorages:
+export const NavStorages: FC<{
+  storages:
     | {
         url: string
         Icon: LucideIcon
       }[]
     | null
-}
-
-export const NavStorage: FC<NavStorageProps> = ({ sharedStorages }) => {
+}> = ({ storages }) => {
   const { pathname } = useLocation()
 
   return (
@@ -30,7 +28,7 @@ export const NavStorage: FC<NavStorageProps> = ({ sharedStorages }) => {
           <SidebarMenuButton asChild>
             <Link
               to="/storage"
-              className={clsx('w-full', {
+              className={clsx({
                 ['bg-accent/90']: pathname === '/storage'
               })}
             >
@@ -42,9 +40,9 @@ export const NavStorage: FC<NavStorageProps> = ({ sharedStorages }) => {
           </SidebarMenuButton>
         </SidebarMenuItem>
         <Separator />
-        {sharedStorages &&
-          sharedStorages.map(({ url, Icon }) => (
-            <SidebarMenuItem key={url} className="">
+        {storages &&
+          storages.map(({ url, Icon }) => (
+            <SidebarMenuItem key={url}>
               <SidebarMenuButton asChild>
                 <Link
                   to={url}

@@ -1,3 +1,3 @@
 export * from './app-outlet'
 export * from './app-sidebar'
-export * from './nav-storage'
+export * from './nav-storages'
