@@ -1,0 +1,51 @@
+name: 'Bug report'
+description: Report an issue
+title: '[bug]: '
+labels: ['bug']
+body:
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+      placeholder: Bug description
+    validations:
+      required: true
+
+  - type: input
+    id: components-affected
+    attributes:
+      label: Affected component/components
+      description: Which components are affected?
+      placeholder: ex. Button, Checkbox...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How to reproduce
+      description: A step-by-step description of how to reproduce the bug.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: 'Please include browser console and server logs around the time this bug occurred. Optional if provided reproduction. Please try not to insert an image but copy paste the log text.'
+      render: bash
+
+  - type: textarea
+    id: system-info
+    attributes:
+      label: System Info
+      description: Information about browsers, system or binaries that's relevant.
+      render: bash
+      placeholder: System, Binaries, Browsers
+    validations:
+      required: true
