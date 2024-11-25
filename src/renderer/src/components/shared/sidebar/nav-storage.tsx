@@ -1,4 +1,4 @@
-import { Avatar } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
 import {
   SidebarGroup,
@@ -6,7 +6,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from '@/components/ui/sidebar'
-import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import clsx from 'clsx'
 import { Plus, type LucideIcon } from 'lucide-react'
 import { FC } from 'react'
