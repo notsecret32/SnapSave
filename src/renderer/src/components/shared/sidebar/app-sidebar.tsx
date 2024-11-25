@@ -31,13 +31,7 @@ const data = {
       url: '/settings',
       Icon: Settings
     }
-  ],
-  navUser: {
-    email: 'sashaskvorhevskiy@gmail.com',
-    user_metadata: {
-      username: 'notsecret32'
-    }
-  }
+  ]
 }
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar>
