@@ -27,18 +27,6 @@ export const router = createBrowserRouter([
             <StoragePage />
           </ProtectedRoute>
         )
-      },
-      {
-        path: 'shared-storage',
-        element: <ProtectedRoute>Shared Storage Page</ProtectedRoute>
-      },
-      {
-        path: 'community',
-        element: <ProtectedRoute>Community Page</ProtectedRoute>
-      },
-      {
-        path: 'settings',
-        element: <ProtectedRoute>Settings Page</ProtectedRoute>
       }
     ]
   },

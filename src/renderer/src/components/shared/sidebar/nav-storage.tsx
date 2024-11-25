@@ -1,54 +1,68 @@
+import { Avatar } from '@/components/ui/avatar'
+import { Separator } from '@/components/ui/separator'
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem
 } from '@/components/ui/sidebar'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import clsx from 'clsx'
-import { type LucideIcon } from 'lucide-react'
+import { Plus, type LucideIcon } from 'lucide-react'
 import { FC } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 interface NavStorageProps {
-  items: {
-    name: string
-    tooltip: string
-    url: string
-    Icon: LucideIcon
-  }[]
+  sharedStorages:
+    | {
+        url: string
+        Icon: LucideIcon
+      }[]
+    | null
 }
 
-export const NavStorage: FC<NavStorageProps> = ({ items }) => {
+export const NavStorage: FC<NavStorageProps> = ({ sharedStorages }) => {
   const { pathname } = useLocation()
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Storage</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map(({ name, tooltip, url, Icon }) => (
-          <SidebarMenuItem key={name}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <SidebarMenuButton asChild>
-                  <Link
-                    to={url}
-                    className={clsx({
-                      ['bg-accent/90']: pathname === url
-                    })}
-                  >
-                    <Icon />
-                    <span>{name}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </TooltipTrigger>
-              <TooltipContent side="right">
-                <p>{tooltip}</p>
-              </TooltipContent>
-            </Tooltip>
-          </SidebarMenuItem>
-        ))}
+        <SidebarMenuItem>
+          <SidebarMenuButton asChild>
+            <Link
+              to="/storage"
+              className={clsx('w-full', {
+                ['bg-accent/90']: pathname === '/storage'
+              })}
+            >
+              <Avatar>
+                <AvatarImage src="https://github.com/notsecret32.png" />
+                <AvatarFallback>MS</AvatarFallback>
+              </Avatar>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+        <Separator />
+        {sharedStorages &&
+          sharedStorages.map(({ url, Icon }) => (
+            <SidebarMenuItem key={url} className="">
+              <SidebarMenuButton asChild>
+                <Link
+                  to={url}
+                  className={clsx('w-full', {
+                    ['bg-accent/90']: pathname === url
+                  })}
+                >
+                  <Icon />
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        <SidebarMenuItem>
+          <SidebarMenuButton>
+            <Plus />
+          </SidebarMenuButton>
+        </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
   )

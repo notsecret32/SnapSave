@@ -11,7 +11,7 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui
 import { useIsMobile } from '@/hooks'
 import { useAuthStore } from '@/store'
 import { User } from '@/types'
-import { ChevronsUpDown, LogOut } from 'lucide-react'
+import { LogOut } from 'lucide-react'
 import { FC } from 'react'
 
 interface NavUserProps {
@@ -35,18 +35,13 @@ export const NavUser: FC<NavUserProps> = ({ user }) => {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg">
+              <Avatar className="size-9/12">
                 <AvatarImage
                   src={user?.user_metadata.avatar_path}
                   alt={user?.user_metadata.username}
                 />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback>CN</AvatarFallback>
               </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user?.user_metadata.username}</span>
-                <span className="truncate text-xs">{user?.email}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
