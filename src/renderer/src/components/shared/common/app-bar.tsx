@@ -48,13 +48,11 @@ const ThemeSwitcher = () => {
     </Popover>
   )
 }
-ThemeSwitcher.displayName = 'ThemeSwitcher'
 
 export const AppBar: FC = () => {
   return (
     <div className="app-bar absolute inset-0 z-50 flex h-min items-center justify-end bg-transparent">
       <ThemeSwitcher />
-
       {actions.map(({ id, Icon }) => (
         <div key={id} className="px-4 py-2 hover:bg-accent/90">
           <Icon size={18} />
