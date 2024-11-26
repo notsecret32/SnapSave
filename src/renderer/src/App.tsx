@@ -8,7 +8,7 @@ import { AppBar } from './components/shared/common'
 
 export const App: FC = () => {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="snapsave-theme">
+    <ThemeProvider>
       <SidebarProvider open={false}>
         <TooltipProvider>
           <AppBar />

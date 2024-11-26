@@ -1,6 +1,31 @@
+import { LucideIcon, MonitorCog, Moon, Sun } from 'lucide-react'
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'dark' | 'light' | 'system'
+interface Theme {
+  name: string
+  variant: ThemeVariant
+  Icon?: LucideIcon
+}
+
+export type ThemeVariant = 'dark' | 'light' | 'system'
+
+const themes: Record<ThemeVariant, Theme> = {
+  dark: {
+    name: 'Dark',
+    variant: 'dark',
+    Icon: Moon
+  },
+  light: {
+    name: 'Light',
+    variant: 'light',
+    Icon: Sun
+  },
+  system: {
+    name: 'System',
+    variant: 'system',
+    Icon: MonitorCog
+  }
+} as const
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -10,11 +35,13 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
   theme: Theme
-  setTheme: (theme: Theme) => void
+  themes: Theme[]
+  setTheme: (variant: ThemeVariant) => void
 }
 
 const initialState: ThemeProviderState = {
-  theme: 'system',
+  theme: themes['system'],
+  themes: [],
   setTheme: () => null
 }
 
@@ -22,36 +49,52 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'system',
-  storageKey = 'vite-ui-theme',
+  defaultTheme = themes['system'],
+  storageKey = 'snapsave-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  )
+  const [theme, setTheme] = useState<Theme>(() => {
+    const storedTheme = localStorage.getItem(storageKey) as ThemeVariant
+    return storedTheme in themes ? themes[storedTheme] : defaultTheme
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
 
-    root.classList.remove('light', 'dark')
-
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
-
-      root.classList.add(systemTheme)
-      return
+    const updateTheme = (variant: ThemeVariant) => {
+      root.classList.remove('light', 'dark')
+      if (variant === 'system') {
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
+        root.classList.add(systemTheme)
+      } else {
+        root.classList.add(variant)
+      }
     }
 
-    root.classList.add(theme)
+    updateTheme(theme.variant)
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = () => {
+      if (theme.variant === 'system') {
+        updateTheme('system')
+      }
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange)
+    }
   }, [theme])
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+    themes: Object.values(themes),
+    setTheme: (variant: ThemeVariant) => {
+      localStorage.setItem(storageKey, variant)
+      setTheme(themes[variant])
     }
   }
 
