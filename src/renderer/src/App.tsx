@@ -1,14 +1,20 @@
-import { ThemeProvider } from '@/components/shared'
+import { ThemeProvider } from '@/components/shared/theme'
+import { SidebarProvider } from '@/components/ui/sidebar'
+import { TooltipProvider } from '@/components/ui/tooltip'
 import { router } from '@/routes'
 import { FC } from 'react'
 import { RouterProvider } from 'react-router-dom'
-import { TitleBar } from './components/shared/common'
+import { AppBar } from './components/shared/common'
 
 export const App: FC = () => {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="snapsave-theme">
-      <TitleBar />
-      <RouterProvider router={router} />
+    <ThemeProvider>
+      <SidebarProvider open={false}>
+        <TooltipProvider>
+          <AppBar />
+          <RouterProvider router={router} />
+        </TooltipProvider>
+      </SidebarProvider>
     </ThemeProvider>
   )
 }

@@ -1,3 +1,5 @@
-import { Dashboard } from '@/pages/Dashboard'
+import { SignInPage } from '@/pages/SignInPage'
+import { SignUpPage } from '@/pages/SignUpPage'
+import { StoragePage } from '@/pages/StoragePage'
 
-export { Dashboard }
+export { SignInPage, SignUpPage, StoragePage }
